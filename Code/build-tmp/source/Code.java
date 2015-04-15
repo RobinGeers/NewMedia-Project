@@ -46,9 +46,10 @@ public void setup() {
 	cp5.addButton("startButton").setValue(0).setPosition(50,50).setSize(100,19);
 	cp5.getController("startButton").setCaptionLabel("Start training");
 
-	//
-	
-	//cp5.getController("buttonOpnieuw").hide();
+	// button 'Volgend object'
+	cp5.addButton("buttonOpnieuw").setValue(0).setPosition(50,50).setSize(100, 20);
+	cp5.getController("buttonOpnieuw").setCaptionLabel("Volgend object");
+	cp5.getController("buttonOpnieuw").hide();
 
 	firstTime = 1;
 }
@@ -154,7 +155,6 @@ public void keyPressed() {
 	  	  toonTekstInstructie();
 		}
 		else if (keyCode == RIGHT) { // Object ligt op veilige plaats
-		  reset = 0; // Zorgt ervoor dat buttonOpnieuw niet iedere keer wordt uitgevoerd als hij wordt aangemaakt
 		  toonButtonOpnieuw();
 		  toonTekstGewonnen();
 		}
@@ -175,8 +175,7 @@ public void toonTekstGewonnen() {
 }
 
 public void toonButtonOpnieuw() {
-	cp5.addButton("buttonOpnieuw").setValue(0).setPosition(50,50).setSize(100, 20);
-	cp5.getController("buttonOpnieuw").setCaptionLabel("Volgend object");
+	cp5.getController("buttonOpnieuw").show();
 	// http://www.sojamo.de/libraries/controlP5/reference/controlP5/Controller.html ALLE getController properties!
 }
 
@@ -188,13 +187,10 @@ public void buttonOpnieuw() {
 }
 
 public void resetAlles() {
-	// Zorgt ervoor dat de knop code niet wordt uitgevoerd bij het initialiseren
-	if(reset==0) return;
 	background(255);
 	toonRandomAfbeelding();
 	toonTekstInstructie();
 	userCollisionCounter = 0;
-	
 }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "Code" };
